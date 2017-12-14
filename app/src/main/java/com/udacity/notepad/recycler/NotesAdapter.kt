@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.udacity.notepad.R
 import com.udacity.notepad.data.DataStore
 import com.udacity.notepad.data.Note
+import com.udacity.notepad.util.layoutInflater
 import kotlinx.android.synthetic.main.item_note.view.*
 import java.util.*
 
@@ -34,7 +34,7 @@ class NotesAdapter(private val context: Context) : RecyclerView.Adapter<NotesAda
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_note, parent, false)
+        val view = context.layoutInflater.inflate(R.layout.item_note, parent, false)
         return NotesViewHolder(view)
     }
 
