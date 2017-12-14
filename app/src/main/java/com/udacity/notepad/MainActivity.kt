@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
+        // Sam conversion - https://kotlinlang.org/docs/reference/java-interop.html#sam-conversions
         fab.setOnClickListener { startActivity(CreateActivity.get(this@MainActivity)) }
 
         recycler = findViewById(R.id.recycler)
@@ -52,9 +53,10 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        // When expression: https://antonioleiva.com/when-expression-kotlin/
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
