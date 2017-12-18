@@ -9,8 +9,9 @@ object DataStore {
 
     val EXEC: Executor = Executors.newSingleThreadExecutor()
 
-    var notes: NoteDatabase? = null
-        private set
+    // https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables
+    @JvmStatic
+    lateinit var notes: NoteDatabase
 
     fun init(context: Context) {
         notes = NoteDatabase(context)

@@ -54,7 +54,7 @@ public class CreateActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Note note = updateNote();
-                DataStore.INSTANCE.getNotes().insert(note);
+                DataStore.getNotes().insert(note);
             }
         });
     }
