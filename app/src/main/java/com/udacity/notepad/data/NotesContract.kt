@@ -7,6 +7,8 @@ import com.udacity.notepad.data.NotesContract.NoteTable.UPDATED_AT
 import com.udacity.notepad.data.NotesContract.NoteTable._ID
 import com.udacity.notepad.data.NotesContract.NoteTable._TABLE_NAME
 
+// https://kotlinlang.org/docs/reference/basic-types.html#string-templates
+
 object NotesContract {
 
     object NoteTable {
@@ -18,17 +20,16 @@ object NotesContract {
         val UPDATED_AT = "updated_at"
     }
 
-    val SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + _TABLE_NAME + " (" +
-                    _ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    TEXT + " TEXT, " +
-                    IS_PINNED + " INTEGER, " +
-                    CREATED_AT + " INTEGER, " +
-                    UPDATED_AT + " INTEGER" +
-                    ")"
+    // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html
+    val SQL_CREATE_ENTRIES = """CREATE TABLE $_TABLE_NAME (
+        $_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        $TEXT TEXT,
+        $IS_PINNED INTEGER,
+        $CREATED_AT INTEGER,
+        $UPDATED_AT INTEGER
+    )""".trimMargin()
 
-    val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + _TABLE_NAME
+    val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $_TABLE_NAME"
 
-    val SQL_QUERY_ALL =
-            "SELECT * FROM NOTE ORDER BY $CREATED_AT DESC"
+    val SQL_QUERY_ALL = "SELECT * FROM $_TABLE_NAME ORDER BY $CREATED_AT DESC"
 }
