@@ -13,6 +13,10 @@ object DataStore {
         notes = NoteDatabase(context)
     }
 
+    fun execute(runnable: Runnable) {
+        doAsync { runnable.run() }
+    }
+
     fun execute(fn: () -> Unit) {
         doAsync { fn() }
     }
