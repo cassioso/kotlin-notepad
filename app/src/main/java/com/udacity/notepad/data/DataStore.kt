@@ -1,13 +1,9 @@
 package com.udacity.notepad.data
 
 import android.content.Context
-
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
+import org.jetbrains.anko.doAsync
 
 object DataStore {
-
-    val EXEC: Executor = Executors.newSingleThreadExecutor()
 
     // https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables
     @JvmStatic
@@ -17,7 +13,7 @@ object DataStore {
         notes = NoteDatabase(context)
     }
 
-    fun execute(runnable: Runnable) {
-        EXEC.execute(runnable)
+    fun execute(fn: () -> Unit) {
+        doAsync { fn() }
     }
 }
