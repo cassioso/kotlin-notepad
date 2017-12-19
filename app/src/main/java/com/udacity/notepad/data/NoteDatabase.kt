@@ -15,14 +15,17 @@ class NoteDatabase(context: Context) {
 
     private val helper: NotesOpenHelper = NotesOpenHelper(context)
 
-    val all: List<Note>
-        get() {
-            val cursor = helper.readableDatabase.query(_TABLE_NAME, null, null, null, null, null,
-                    CREATED_AT)
-            val retval = allFromCursor(cursor)
-            cursor.close()
-            return retval
-        }
+    fun getAll(): List<Note> {
+        val cursor = helper.readableDatabase.query(_TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                CREATED_AT)
+
+        return cursor.use(this::allFromCursor)
+    }
 
     fun loadAllByIds(vararg ids: Int): List<Note> {
         val questionMarks = StringBuilder()
